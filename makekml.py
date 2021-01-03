@@ -117,8 +117,8 @@ def writeKml(input, output):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description = 'Convert Dragonfly log into KML')
-    parser.add_argument('input', type=str, help='Input Dragonfly log.')
-    parser.add_argument('output', type=str, help='Output KML file.')
+    parser.add_argument('--input', type=str, help='Input Dragonfly log.')
+    parser.add_argument('--output', type=str, help='Output KML file.')
     args = parser.parse_args()
 
     writeKml(args.input, args.output)

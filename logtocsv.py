@@ -41,8 +41,8 @@ def writecsv(input, output):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description = 'Convert Dragonfly log into CSV')
-    parser.add_argument('input', type=str, help='Input Dragonfly log.')
-    parser.add_argument('output', type=str, help='Output CSV file.')
+    parser.add_argument('--input', type=str, help='Input Dragonfly log.')
+    parser.add_argument('--output', type=str, help='Output CSV file.')
     args = parser.parse_args()
 
     writecsv(args.input, args.output)
