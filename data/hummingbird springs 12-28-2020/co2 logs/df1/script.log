@@ -1,0 +1,697 @@
+SIOCADDRT: File exists
+./run.sh: line 18: P21625: command not found
+Traceback (most recent call last):
+  File "/home/ubuntu/dev/dragonfly/src/dragonfly/scripts/command.py", line 10, in <module>
+    from dragonfly_messages.srv import Lawnmower, LawnmowerResponse, DDSA, DDSAResponse
+ImportError: cannot import name DDSA
+... logging to /home/ubuntu/.ros/log/6dc39478-d0dc-11e5-8629-dca6322407db/roslaunch-dragonfly1-1627.log
+Checking log directory for disk usage. This may take awhile.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;config/apm.launch
+[1mstarted roslaunch server http://dragonfly1.local:38883/[0m
+
+SUMMARY
+========
+
+CLEAR PARAMETERS
+ * /dragonfly1/mavros/
+
+PARAMETERS
+ * /dragonfly1/mavros/cmd/use_comp_id_system_control: False
+ * /dragonfly1/mavros/conn/heartbeat_mav_type: ONBOARD_CONTROLLER
+ * /dragonfly1/mavros/conn/heartbeat_rate: 1.0
+ * /dragonfly1/mavros/conn/system_time_rate: 1.0
+ * /dragonfly1/mavros/conn/timeout: 10.0
+ * /dragonfly1/mavros/conn/timesync_rate: 10.0
+ * /dragonfly1/mavros/distance_sensor/rangefinder_pub/field_of_view: 0.0
+ * /dragonfly1/mavros/distance_sensor/rangefinder_pub/frame_id: lidar
+ * /dragonfly1/mavros/distance_sensor/rangefinder_pub/id: 0
+ * /dragonfly1/mavros/distance_sensor/rangefinder_pub/send_tf: False
+ * /dragonfly1/mavros/distance_sensor/rangefinder_pub/sensor_position/x: 0.0
+ * /dragonfly1/mavros/distance_sensor/rangefinder_pub/sensor_position/y: 0.0
+ * /dragonfly1/mavros/distance_sensor/rangefinder_pub/sensor_position/z: -0.1
+ * /dragonfly1/mavros/distance_sensor/rangefinder_sub/id: 1
+ * /dragonfly1/mavros/distance_sensor/rangefinder_sub/orientation: PITCH_270
+ * /dragonfly1/mavros/distance_sensor/rangefinder_sub/subscriber: True
+ * /dragonfly1/mavros/fake_gps/eph: 2.0
+ * /dragonfly1/mavros/fake_gps/epv: 2.0
+ * /dragonfly1/mavros/fake_gps/fix_type: 3
+ * /dragonfly1/mavros/fake_gps/geo_origin/alt: 408.0
+ * /dragonfly1/mavros/fake_gps/geo_origin/lat: 47.3667
+ * /dragonfly1/mavros/fake_gps/geo_origin/lon: 8.55
+ * /dragonfly1/mavros/fake_gps/gps_rate: 5.0
+ * /dragonfly1/mavros/fake_gps/mocap_transform: True
+ * /dragonfly1/mavros/fake_gps/satellites_visible: 5
+ * /dragonfly1/mavros/fake_gps/tf/child_frame_id: fix
+ * /dragonfly1/mavros/fake_gps/tf/frame_id: map
+ * /dragonfly1/mavros/fake_gps/tf/listen: False
+ * /dragonfly1/mavros/fake_gps/tf/rate_limit: 10.0
+ * /dragonfly1/mavros/fake_gps/tf/send: False
+ * /dragonfly1/mavros/fake_gps/use_mocap: True
+ * /dragonfly1/mavros/fake_gps/use_vision: False
+ * /dragonfly1/mavros/fcu_protocol: v2.0
+ * /dragonfly1/mavros/fcu_url: /dev/ttypixhawk:9...
+ * /dragonfly1/mavros/gcs_url: 
+ * /dragonfly1/mavros/global_position/child_frame_id: base_link
+ * /dragonfly1/mavros/global_position/frame_id: map
+ * /dragonfly1/mavros/global_position/gps_uere: 1.0
+ * /dragonfly1/mavros/global_position/rot_covariance: 99999.0
+ * /dragonfly1/mavros/global_position/tf/child_frame_id: base_link
+ * /dragonfly1/mavros/global_position/tf/frame_id: map
+ * /dragonfly1/mavros/global_position/tf/global_frame_id: earth
+ * /dragonfly1/mavros/global_position/tf/send: False
+ * /dragonfly1/mavros/global_position/use_relative_alt: True
+ * /dragonfly1/mavros/image/frame_id: px4flow
+ * /dragonfly1/mavros/imu/angular_velocity_stdev: 0.0003490659 // 0...
+ * /dragonfly1/mavros/imu/frame_id: base_link
+ * /dragonfly1/mavros/imu/linear_acceleration_stdev: 0.0003
+ * /dragonfly1/mavros/imu/magnetic_stdev: 0.0
+ * /dragonfly1/mavros/imu/orientation_stdev: 1.0
+ * /dragonfly1/mavros/landing_target/camera/fov_x: 2.0071286398
+ * /dragonfly1/mavros/landing_target/camera/fov_y: 2.0071286398
+ * /dragonfly1/mavros/landing_target/image/height: 480
+ * /dragonfly1/mavros/landing_target/image/width: 640
+ * /dragonfly1/mavros/landing_target/land_target_type: VISION_FIDUCIAL
+ * /dragonfly1/mavros/landing_target/listen_lt: False
+ * /dragonfly1/mavros/landing_target/mav_frame: LOCAL_NED
+ * /dragonfly1/mavros/landing_target/target_size/x: 0.3
+ * /dragonfly1/mavros/landing_target/target_size/y: 0.3
+ * /dragonfly1/mavros/landing_target/tf/child_frame_id: camera_center
+ * /dragonfly1/mavros/landing_target/tf/frame_id: landing_target
+ * /dragonfly1/mavros/landing_target/tf/listen: False
+ * /dragonfly1/mavros/landing_target/tf/rate_limit: 10.0
+ * /dragonfly1/mavros/landing_target/tf/send: True
+ * /dragonfly1/mavros/local_position/frame_id: map
+ * /dragonfly1/mavros/local_position/tf/child[0m[ INFO] [1455208119.388628087]: FCU URL: /dev/ttypixhawk:921600[0m
+[0m[ INFO] [1455208119.394738522]: serial0: device: /dev/ttypixhawk @ 921600 bps[0m
+[0m[ INFO] [1455208119.403160894]: GCS bridge disabled[0m
+[0m[ INFO] [1455208119.507854288]: Plugin 3dr_radio loaded[0m
+[0m[ INFO] [1455208119.514479084]: Plugin 3dr_radio initialized[0m
+[0m[ INFO] [1455208119.514547620]: Plugin actuator_control blacklisted[0m
+[0m[ INFO] [1455208119.551994571]: Plugin adsb loaded[0m
+[0m[ INFO] [1455208119.566579100]: Plugin adsb initialized[0m
+[0m[ INFO] [1455208119.566647377]: Plugin altitude blacklisted[0m
+[0m[ INFO] [1455208119.566918853]: Plugin cam_imu_sync loaded[0m
+[0m[ INFO] [1455208119.569708169]: Plugin cam_imu_sync initialized[0m
+[0m[ INFO] [1455208119.570084032]: Plugin command loaded[0m
+[0m[ INFO] [1455208119.597349109]: Plugin command initialized[0m
+[0m[ INFO] [1455208119.597692769]: Plugin companion_process_status loaded[0m
+[0m[ INFO] [1455208119.609474742]: Plugin companion_process_status initialized[0m
+[0m[ INFO] [1455208119.609541907]: Plugin debug_value blacklisted[0m
+[0m[ INFO] [1455208119.609861271]: Plugin distance_sensor loaded[0m
+[0m[ INFO] [1455208119.651256219]: Plugin distance_sensor initialized[0m
+[0m[ INFO] [1455208119.651605472]: Plugin fake_gps loaded[0m
+[0m[ INFO] [1455208119.719767248]: Plugin fake_gps initialized[0m
+[0m[ INFO] [1455208119.719835691]: Plugin ftp blacklisted[0m
+[0m[ INFO] [1455208119.720193498]: Plugin global_position loaded[0m
+[0m[ INFO] [1455208119.800458185]: Plugin global_position initialized[0m
+[0m[ INFO] [1455208119.800777049]: Plugin gps_rtk loaded[0m
+[0m[ INFO] [1455208119.813665316]: Plugin gps_rtk initialized[0m
+[0m[ INFO] [1455208119.813737610]: Plugin hil blacklisted[0m
+[0m[ INFO] [1455208119.814107066]: Plugin home_position loaded[0m
+[0m[ INFO] [1455208119.831384839]: Plugin home_position initialized[0m
+[0m[ INFO] [1455208119.831777738]: Plugin imu loaded[0m
+[0m[ INFO] [1455208119.871397629]: Plugin imu initialized[0m
+[0m[ INFO] [1455208119.871781584]: Plugin landing_target loaded[0m
+[0m[ INFO] [1455208119.944506956]: Plugin landing_target initialized[0m
+[0m[ INFO] [1455208119.944922170]: Plugin local_position loaded[0m
+[0m[ INFO] [1455208119.977780415]: Plugin local_position initialized[0m
+[0m[ INFO] [1455208119.978125890]: Plugin log_transfer loaded[0m
+[0m[ INFO] [1455208119.990509203]: Plugin log_transfer initialized[0m
+[0m[ INFO] [1455208119.990896251]: Plugin manual_control loaded[0m
+[0m[ INFO] [1455208120.005575204]: Plugin manual_control initialized[0m
+[0m[ INFO] [1455208120.005945512]: Plugin mocap_pose_estimate loaded[0m
+[0m[ INFO] [1455208120.025205394]: Plugin mocap_pose_estimate initialized[0m
+[0m[ INFO] [1455208120.025564313]: Plugin mount_control loaded[0m
+[0m[ INFO] [1455208120.042190913]: Plugin mount_control initialized[0m
+[0m[ INFO] [1455208120.042531036]: Plugin obstacle_distance loaded[0m
+[0m[ INFO] [1455208120.056672499]: Plugin obstacle_distance initialized[0m
+[0m[ INFO] [1455208120.057019881]: Plugin odom loaded[0m
+[0m[ INFO] [1455208120.075588555]: Plugin odom initialized[0m
+[0m[ INFO] [1455208120.075927826]: Plugin onboard_computer_status loaded[0m
+[0m[ INFO] [1455208120.087729447]: Plugin onboard_computer_status initialized[0m
+[0m[ INFO] [1455208120.088146716]: Plugin param loaded[0m
+[0m[ INFO] [1455208120.100157777]: Plugin param initialized[0m
+[0m[ INFO] [1455208120.100237368]: Plugin px4flow blacklisted[0m
+[0m[ INFO] [1455208120.100540325]: Plugin rangefinder loaded[0m
+[0m[ INFO] [1455208120.103642709]: Plugin rangefinder initialized[0m
+[0m[ INFO] [1455208120.104027035]: Plugin rc_io loaded[0m
+[0m[ INFO] [1455208120.119647043]: Plugin rc_io initialized[0m
+[0m[ INFO] [1455208120.119732560]: Plugin safety_area blacklisted[0m
+[0m[ INFO] [1455208120.120120405]: Plugin setpoint_accel loaded[0m
+[0m[ INFO] [1455208120.135866966]: Plugin setpoint_accel initialized[0m
+[0m[ INFO] [1455208120.136276403]: Plugin setpoint_attitude loaded[0m
+[0m[ INFO] [1455208120.180405964]: Plugin setpoint_attitude initialized[0m
+[0m[ INFO] [1455208120.180886992]: Plugin setpoint_position loaded[0m
+[0m[ INFO] [1455208120.266120081]: Plugin setpoint_position initialized[0m
+[0m[ INFO] [1455208120.266588350]: Plugin setpoint_raw loaded[0m
+[0m[ INFO] [1455208120.329613134]: Plugin setpoint_raw initialized[0m
+[0m[ INFO] [1455208120.330053440]: Plugin setpoint_trajectory loaded[0m
+[0m[ INFO] [1455208120.359832709]: Plugin setpoint_trajectory initialized[0m
+[0m[ INFO] [1455208120.360486307]: Plugin setpoint_velocity loaded[0m
+[0m[ INFO] [1455208120.396832465]: Plugin setpoint_velocity initialized[0m
+[0m[ INFO] [1455208120.397373973]: Plugin sys_status loaded[0m
+[0m[ INFO] [1455208120.459297390]: Plugin sys_status initialized[0m
+[0m[ INFO] [1455208120.459943821]: Plugin sys_time loaded[0m
+[0m[ INFO] [1455208120.496678268]: TM: Timesync mode: MAVLINK[0m
+[0m[ INFO] [1455208120.503515153]: Plugin sys_time initialized[0m
+[0m[ INFO] [1455208120.503854369]: Plugin trajectory loaded[0m
+[0m[ INFO] [1455208120.529523384]: Plugin trajectory initialized[0m
+[0m[ INFO] [1455208120.529936024]: Plugin vfr_hud loaded[0m
+[0m[ INFO] [1455208120.532819912]: Plugin vfr_hud initialized[0m
+[0m[ INFO] [1455208120.532916521]: Plugin vibration blacklisted[0m
+[0m[ INFO] [1455208120.533461715]: Plugin vision_pose_estimate loaded[0m
+[0m[ INFO] [1455208120.601720396]: Plugin vision_pose_estimate initialized[0m
+[0m[ INFO] [1455208120.601896133]: Plugin vision_speed_estimate blacklisted[0m
+[0m[ INFO] [1455208120.603284236]: Plugin waypoint loaded[0m
+[0m[ INFO] [1455208120.647353280]: Plugin waypoint initialized[0m
+[0m[ INFO] [1455208120.648026989]: Plugin wheel_odometry blacklisted[0m
+[0m[ INFO] [1455208120.649196984]: Plugin wind_estimation loaded[0m
+[0m[ INFO] [1455208120.655037629]: Plugin wind_estimation initialized[0m
+[0m[ INFO] [1455208120.656131663]: Built-in SIMD instructions: None[0m
+[0m[ INFO] [1455208120.656729114]: Built-in MAVLink package version: 2020.5.21[0m
+[0m[ INFO] [1455208120.657391861]: Known MAVLink dialects: common ardupilotmega ASLUAV autoquad icarous matrixpilot paparazzi slugs standard uAvionix ualberta[0m
+[0m[ INFO] [1455208120.657911036]: MAVROS started. MY ID 1.240, TARGET ID 1.1[0m
+[0m[ INFO] [1455208120.864256327]: FCU: EKF2 IMU0 is using GPS[0m
+[0m[ INFO] [1455208121.432150516]: CON: Got HEARTBEAT, connected. FCU: ArduPilot[0m
+[0m[ INFO] [1455208121.442104266]: RC_CHANNELS message detected![0m
+[0m[ INFO] [1455208121.445157336]: IMU: Raw IMU message used.[0m
+[33m[ WARN] [1455208122.448963078]: CMD: Unexpected command 520, result 0[0m
+[0m[ INFO] [1455208122.451955964]: WP: Using MISSION_ITEM_INT[0m
+[0m[ INFO] [1455208122.452153571]: VER: 1.1: Capabilities         0x000000000000fbef[0m
+[0m[ INFO] [1455208122.452260680]: VER: 1.1: Flight software:     040003ff ( ffd0862)[0m
+[0m[ INFO] [1455208122.452350475]: VER: 1.1: Middleware software: 00000000 (        )[0m
+[0m[ INFO] [1455208122.452409103]: VER: 1.1: OS software:         00000000 ( d4fce84)[0m
+[0m[ INFO] [1455208122.452480065]: VER: 1.1: Board hardware:      00000000[0m
+[0m[ INFO] [1455208122.452551341]: VER: 1.1: VID/PID:             0000:0000[0m
+[0m[ INFO] [1455208122.452603192]: VER: 1.1: UID:                 0000000000000000[0m
+[0m[ INFO] [1455208131.432568532]: HP: requesting home position[0m
+[0m[ INFO] [1455208131.441253695]: FCU: ArduCopter V4.0.3 (ffd08628)[0m
+[0m[ INFO] [1455208131.441542115]: FCU: ChibiOS: d4fce84e[0m
+[0m[ INFO] [1455208131.442181269]: FCU: CubeBlack 0031003E 33365101 36353335[0m
+[0m[ INFO] [1455208131.442365840]: FCU: RCOut: PWM:1-12[0m
+[0m[ INFO] [1455208131.446208246]: FCU: Frame: QUAD[0m
+[33m[ WARN] [1455208132.432886046]: PR: request list timeout, retries left 2[0m
+[33m[ WARN] [1455208133.433437149]: PR: request list timeout, retries left 1[0m
+[33m[ WARN] [1455208134.433725498]: PR: request list timeout, retries left 0[0m
+[33m[ WARN] [1455208136.440082230]: CMD: Command 410 -- wait ack timeout[0m
+[33m[ WARN] [1455208136.441453610]: CMD: Unexpected command 410, result 0[0m
+[0m[ INFO] [1455208136.491348373]: FCU: ArduCopter V4.0.3 (ffd08628)[0m
+[0m[ INFO] [1455208136.492373057]: FCU: ChibiOS: d4fce84e[0m
+[0m[ INFO] [1455208136.494325815]: FCU: CubeBlack 0031003E 33365101 36353335[0m
+[0m[ INFO] [1455208136.495345795]: FCU: RCOut: PWM:1-12[0m
+[0m[ INFO] [1455208136.497286979]: FCU: Frame: QUAD[0m
+[33m[ WARN] [1455208136.497901264]: TM : RTT too high for timesync: 3994.26 ms.[0m
+[33m[ WARN] [1455208136.502351417]: TM : RTT too high for timesync: 3397.79 ms.[0m
+[0m[ INFO] [1455208136.509312077]: FCU: ArduCopter V4.0.3 (ffd08628)[0m
+[0m[ INFO] [1455208136.509898029]: FCU: ChibiOS: d4fce84e[0m
+[0m[ INFO] [1455208136.511443165]: FCU: CubeBlack 0031003E 33365101 36353335[0m
+[0m[ INFO] [1455208136.512175539]: FCU: RCOut: PWM:1-12[0m
+[0m[ INFO] [1455208136.514360867]: FCU: Frame: QUAD[0m
+[33m[ WARN] [1455208136.517332827]: TM : RTT too high for timesync: 2813.53 ms.[0m
+[0m[ INFO] [1455208136.525330893]: FCU: ArduCopter V4.0.3 (ffd08628)[0m
+[0m[ INFO] [1455208136.526097193]: FCU: ChibiOS: d4fce84e[0m
+[0m[ INFO] [1455208136.527400371]: FCU: CubeBlack 0031003E 33365101 36353335[0m
+[0m[ INFO] [1455208136.529378832]: FCU: RCOut: PWM:1-12[0m
+[0m[ INFO] [1455208136.530323628]: FCU: Frame: QUAD[0m
+[33m[ WARN] [1455208136.530763027]: TM : RTT too high for timesync: 26.94 ms.[0m
+[0m[ INFO] [1455208136.532411662]: WP: item #0  F:[0m
+[0m[ INFO] [1455208136.541391152]: WP: item #1  F: C: 16 p: 1 0 0 0 x: 350820832 y: -1066164160 z: 5[0m
+[0m[ INFO] [1455208136.545372889]: WP: item #2  F: C: 16 p: 1 0 0 0 x: 350820992 y: -1066164160 z: 5[0m
+[0m[ INFO] [1455208136.549366774]: WP: item #3  F: C: 16 p: 1 0 0 0 x: 350820992 y: -1066164608 z: 5[0m
+[0m[ INFO] [1455208136.552352549]: WP: item #4  F: C: 16 p: 1 0 0 0 x: 350820640 y: -1066164608 z: 5[0m
+[0m[ INFO] [1455208136.555396582]: WP: item #5  F: C: 16 p: 1 0 0 0 x: 350820640 y: -1066163968 z: 5[0m
+[0m[ INFO] [1455208136.559375078]: WP: item #6  F: C: 16 p: 1 0 0 0 x: 350821184 y: -1066163968 z: 5[0m
+[0m[ INFO] [1455208136.565345887]: WP: item #7  F: C: 16 p: 1 0 0 0 x: 350821184 y: -1066164864 z: 5[0m
+[0m[ INFO] [1455208136.569381715]: WP: item #8  F: C: 16 p: 1 0 0 0 x: 350820480 y: -1066164864 z: 5[0m
+[0m[ INFO] [1455208136.575395986]: WP: item #9  F: C: 16 p: 1 0 0 0 x: 350820480 y: -1066163776 z: 5[0m
+[0m[ INFO] [1455208136.579355983]: WP: item #10  F: C: 16 p: 1 0 0 0 x: 350821376 y: -1066163776 z: 5[0m
+[0m[ INFO] [1455208136.587370603]: WP: item #11  F: C: 16 p: 1 0 0 0 x: 350821376 y: -1066165056 z: 5[0m
+[0m[ INFO] [1455208136.592315062]: WP: item #12  F: C: 16 p: 1 0 0 0 x: 350820288 y: -1066165056 z: 5[0m
+[0m[ INFO] [1455208136.597339649]: WP: item #13  F: C: 16 p: 1 0 0 0 x: 350820832 y: -1066164416 z: 5[0m
+[0m[ INFO] [1455208136.597930082]: WP: mission received[0m
+[33m[ WARN] [1455208153.435491767]: PR: Param STAT_RUNTIME (65535/1043): <value><i4>270211</i4></value> different index: 817/1043[0m
+[0m[ INFO] [1455208160.531211964]: PR: parameters list received[0m
+[33m[ WARN] [1455208418.093524384]: TM : RTT too high for timesync: 589.14 ms.[0m
+[0m[ INFO] [1455208418.414666149]: FCU: Calibrating barometer[0m
+[33m[ WARN] [1455208418.757684318]: TM : RTT too high for timesync: 553.92 ms.[0m
+[33m[ WARN] [1455208419.856562050]: TM : RTT too high for timesync: 852.72 ms.[0m
+[0m[ INFO] [1455208420.167487681]: FCU: Barometer 1 calibration complete[0m
+[0m[ INFO] [1455208420.168457754]: FCU: Barometer 2 calibration complete[0m
+[33m[ WARN] [1455208420.507765811]: TM : RTT too high for timesync: 503.48 ms.[0m
+[0m[ INFO] [1455208420.831222660]: FCU: Initialising APM[0m
+[33m[ WARN] [1455208421.952118682]: TM : RTT too high for timesync: 947.50 ms.[0m
+[33m[ WARN] [1455208422.624034279]: TM : RTT too high for timesync: 219.98 ms.[0m
+[33m[ WARN] [1455208423.681923147]: TM : RTT too high for timesync: 377.87 ms.[0m
+[33m[ WARN] [1455208424.709746401]: TM : RTT too high for timesync: 705.26 [WARN] [1455208949.802825]: MasterMonitor[/rostopic_9180_1455208761404]: can't update contact information. ROS master responds with: unknown node [/rostopic_9180_1455208761404]
+ms.[0m
+[33m[ WARN] [1455208424.815728899]: TM : RTT too high for timesync: 11.97 ms.[0m
+[33m[ WARN] [1455208425.797572905]: TM : RTT too high for timesync: 793.15 ms.[0m
+[0m[ INFO] [1455208426.088522742]: FCU: Initialising APM[0m
+[33m[ WARN] [1455208426.885317947]: TM : RTT too high for timesync: 881.64 ms.[0m
+[33m[ WARN] [1455208427.619074295]: TM : RTT too high for timesync: 15.51 ms.[0m
+[0m[ INFO] [1455208427.882150604]: FCU: GPS 1: specified as UAVCAN[0m
+[33m[ WARN] [1455208428.645103121]: TM : RTT too high for timesync: 640.99 ms.[0m
+[0m[ INFO] [1455208429.278948500]: FCU: EKF2 IMU0 initial yaw alignment complete[0m
+[0m[ INFO] [1455208429.280949016]: FCU: EKF2 IMU1 initial yaw alignment complete[0m
+[33m[ WARN] [1455208429.646759646]: TM : RTT too high for timesync: 742.27 ms.[0m
+[0m[ INFO] [1455208430.368746947]: FCU: EKF2 IMU0 tilt alignment complete[0m
+[0m[ INFO] [1455208430.370702520]: FCU: EKF2 IMU1 tilt alignment complete[0m
+[33m[ WARN] [1455208430.736692591]: TM : RTT too high for timesync: 732.74 ms.[0m
+[0m[ INFO] [1455208469.804170712]: FCU: Initialising APM[0m
+[33m[ WARN] [1455208469.828918246]: TM : RTT too high for timesync: 2624.63 ms.[0m
+[33m[ WARN] [1455208470.114880847]: TM : RTT too high for timesync: 10.56 ms.[0m
+[33m[ WARN] [1455208470.155919858]: TM : RTT too high for timesync: 1351.75 ms.[0m
+[33m[ WARN] [1455208470.160821040]: TM : RTT too high for timesync: 756.86 ms.[0m
+[33m[ WARN] [1455208470.884673897]: TM : RTT too high for timesync: 880.83 ms.[0m
+[33m[ WARN] [1455208471.539715564]: TM : RTT too high for timesync: 535.66 ms.[0m
+[0m[ INFO] [1455208472.188595723]: FCU: Calibrating barometer[0m
+[33m[ WARN] [1455208472.639570314]: TM : RTT too high for timesync: 635.06 ms.[0m
+[33m[ WARN] [1455208473.625311225]: TM : RTT too high for timesync: 221.16 ms.[0m
+[0m[ INFO] [1455208473.949297212]: FCU: Barometer 1 calibration complete[0m
+[0m[ INFO] [1455208473.951222322]: FCU: Barometer 2 calibration complete[0m
+[0m[ INFO] [1455208474.735254963]: FCU: Initialising APM[0m
+[33m[ WARN] [1455208474.739114517]: TM : RTT too high for timesync: 734.79 ms.[0m
+[33m[ WARN] [1455208475.734957952]: TM : RTT too high for timesync: 731.10 ms.[0m
+[0m[ INFO] [1455208476.198870809]: FCU: GPS 1: specified as UAVCAN[0m
+[33m[ WARN] [1455208476.826779397]: TM : RTT too high for timesync: 522.70 ms.[0m
+[0m[ INFO] [1455208477.490617855]: FCU: EKF2 IMU0 initial yaw alignment complete[0m
+[0m[ INFO] [1455208477.890622741]: FCU: EKF2 IMU1 initial yaw alignment complete[0m
+[33m[ WARN] [1455208477.923627280]: TM : RTT too high for timesync: 819.88 ms.[0m
+[0m[ INFO] [1455208478.564419856]: FCU: EKF2 IMU0 tilt alignment complete[0m
+[0m[ INFO] [1455208478.584434316]: FCU: EKF2 IMU1 tilt alignment complete[0m
+[33m[ WARN] [1455208478.597463560]: TM : RTT too high for timesync: 593.69 ms.[0m
+[33m[ WARN] [1455208479.665259920]: TM : RTT too high for timesync: 661.44 ms.[0m
+[33m[ WARN] [1455208480.665156017]: TM : RTT too high for timesync: 661.24 ms.[0m
+[33m[ WARN] [1455208481.751820358]: TM : RTT too high for timesync: 747.92 ms.[0m
+[33m[ WARN] [1455208482.753809470]: TM : RTT too high for timesync: 750.05 ms.[0m
+[33m[ WARN] [1455208483.824434052]: TM : RTT too high for timesync: 419.88 ms.[0m
+[33m[ WARN] [1455208484.494557368]: TM : RTT too high for timesync: 490.49 ms.[0m
+_frame_id: base_link
+ * /dragonfly1/mavros/local_position/tf/frame_id: map
+ * /dragonfly1/mavros/local_position/tf/send: False
+ * /dragonfly1/mavros/local_position/tf/send_fcu: False
+ * /dragonfly1/mavros/mission/pull_after_gcs: True
+ * /dragonfly1/mavros/mission/use_mission_item_int: True
+ * /dragonfly1/mavros/mocap/use_pose: True
+ * /dragonfly1/mavros/mocap/use_tf: False
+ * /dragonfly1/mavros/odometry/estimator_type: 3
+ * /dragonfly1/mavros/odometry/frame_tf/desired_frame: ned
+ * /dragonfly1/mavros/plugin_blacklist: ['actuator_contro...
+ * /dragonfly1/mavros/plugin_whitelist: []
+ * /dragonfly1/mavros/px4flow/frame_id: px4flow
+ * /dragonfly1/mavros/px4flow/ranger_fov: 0.118682
+ * /dragonfly1/mavros/px4flow/ranger_max_range: 5.0
+ * /dragonfly1/mavros/px4flow/ranger_min_range: 0.3
+ * /dragonfly1/mavros/safety_area/p1/x: 1.0
+ * /dragonfly1/mavros/safety_area/p1/y: 1.0
+ * /dragonfly1/mavros/safety_area/p1/z: 1.0
+ * /dragonfly1/mavros/safety_area/p2/x: -1.0
+ * /dragonfly1/mavros/safety_area/p2/y: -1.0
+ * /dragonfly1/mavros/safety_area/p2/z: -1.0
+ * /dragonfly1/mavros/setpoint_accel/send_force: False
+ * /dragonfly1/mavros/setpoint_attitude/reverse_thrust: False
+ * /dragonfly1/mavros/setpoint_attitude/tf/child_frame_id: target_attitude
+ * /dragonfly1/mavros/setpoint_attitude/tf/frame_id: map
+ * /dragonfly1/mavros/setpoint_attitude/tf/listen: False
+ * /dragonfly1/mavros/setpoint_attitude/tf/rate_limit: 50.0
+ * /dragonfly1/mavros/setpoint_attitude/use_quaternion: False
+ * /dragonfly1/mavros/setpoint_position/mav_frame: LOCAL_NED
+ * /dragonfly1/mavros/setpoint_position/tf/child_frame_id: target_position
+ * /dragonfly1/mavros/setpoint_position/tf/frame_id: map
+ * /dragonfly1/mavros/setpoint_position/tf/listen: False
+ * /dragonfly1/mavros/setpoint_position/tf/rate_limit: 50.0
+ * /dragonfly1/mavros/setpoint_raw/thrust_scaling: 1.0
+ * /dragonfly1/mavros/setpoint_velocity/mav_frame: LOCAL_NED
+ * /dragonfly1/mavros/startup_px4_usb_quirk: False
+ * /dragonfly1/mavros/sys/disable_diag: False
+ * /dragonfly1/mavros/sys/min_voltage: 10.0
+ * /dragonfly1/mavros/target_component_id: 1
+ * /dragonfly1/mavros/target_system_id: 1
+ * /dragonfly1/mavros/tdr_radio/low_rssi: 40
+ * /dragonfly1/mavros/time/time_ref_source: fcu
+ * /dragonfly1/mavros/time/timesync_avg_alpha: 0.6
+ * /dragonfly1/mavros/time/timesync_mode: MAVLINK
+ * /dragonfly1/mavros/vibration/frame_id: base_link
+ * /dragonfly1/mavros/vision_pose/tf/child_frame_id: vision_estimate
+ * /dragonfly1/mavros/vision_pose/tf/frame_id: map
+ * /dragonfly1/mavros/vision_pose/tf/listen: False
+ * /dragonfly1/mavros/vision_pose/tf/rate_limit: 10.0
+ * /dragonfly1/mavros/vision_speed/listen_twist: True
+ * /dragonfly1/mavros/vision_speed/twist_cov: True
+ * /dragonfly1/mavros/wheel_odometry/child_frame_id: base_link
+ * /dragonfly1/mavros/wheel_odometry/count: 2
+ * /dragonfly1/mavros/wheel_odometry/frame_id: map
+ * /dragonfly1/mavros/wheel_odometry/send_raw: True
+ * /dragonfly1/mavros/wheel_odometry/send_twist: False
+ * /dragonfly1/mavros/wheel_odometry/tf/child_frame_id: base_link
+ * /dragonfly1/mavros/wheel_odometry/tf/frame_id: map
+ * /dragonfly1/mavros/wheel_odometry/tf/send: True
+ * /dragonfly1/mavros/wheel_odometry/use_rpm: False
+ * /dragonfly1/mavros/wheel_odometry/vel_error: 0.1
+ * /dragonfly1/mavros/wheel_odometry/wheel0/radius: 0.05
+ * /dragonfly1/mavros/wheel_odometry/wheel0/x: 0.0
+ * /dragonfly1/mavros/wheel_odometry/wheel0/y: -0.15
+ * /dragonfly1/mavros/wheel_odometry/wheel1/radius: 0.05
+ * /dragonfly1/mavros/wheel_odometry/wheel1/x: 0.0
+ * /dragonfly1/mavros/wheel_odometry/wheel1/y: 0.15
+ * /rosdistro: kinetic
+ * /rosversion: 1.12.14
+
+NODES
+  /dragonfly1/
+    mavros (mavros/mavros_node)
+
+[1mROS_MASTER_URI=http://dragonfly1.local:11311[0m
+]2;config/apm.launch http://dragonfly1.local:11311
+[1mprocess[dragonfly1/mavros-1]: started with pid [1841][0m
+[dragonfly1/mavros-1] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+SIOCADDRT: File exists
+Traceback (most recent call last):
+  File "/opt/ros/kinetic/lib/master_discovery_fkie/master_discovery", line 4, in <module>
+    master_discovery_fkie.main()
+  File "/opt/ros/kinetic/lib/python2.7/dist-packages/master_discovery_fkie/__init__.py", line 97, in main
+    rospy.init_node(PROCESS_NAME, log_level=log_level)
+  File "/opt/ros/kinetic/lib/python2.7/dist-packages/rospy/client.py", line 323, in init_node
+    raise rospy.exceptions.ROSInitException("init_node interrupted before it could complete")
+rospy.exceptions.ROSInitException: init_node interrupted before it could complete
+SIOCADDRT: File exists
+./run.sh: line 18: P21672: command not found
+Traceback (most recent call last):
+  File "/home/ubuntu/dev/dragonfly/src/dragonfly/scripts/command.py", line 10, in <module>
+    from dragonfly_messages.srv import Lawnmower, LawnmowerResponse, DDSA, DDSAResponse
+ImportError: cannot import name DDSA
+... logging to /home/ubuntu/.ros/log/6deb1322-d0dc-11e5-bf74-dca6322407db/roslaunch-dragonfly1-1674.log
+Checking log directory for disk usage. This may take awhile.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;config/apm.launch
+[1mstarted roslaunch server http://dragonfly1.local:36335/[0m
+
+SUMMARY
+========
+
+CLEAR PARAMETERS
+ * /dragonfly1/mavros/
+
+PARAMETERS
+ * /dragonfly1/mavros/cmd/use_comp_id_system_control: False
+ * /dragonfly1/mavros/conn/heartbeat_mav_type: ONBOARD_CONTROLLER
+ * /dragonfly1/mavros/conn/heartbeat_rate: 1.0
+ * /dragonfly1/mavros/conn/system_time_rate: 1.0
+ * /dragonfly1/mavros/conn/timeout: 10.0
+ * /dragonfly1/mavros/conn/timesync_rate: 10.0
+ * /dragonfly1/mavros/distance_sensor/rangefinder_pub/field_of_view: 0.0
+ * /dragonfly1/mavros/distance_sensor/rangefinder_pub/frame_id: lidar
+ * /dragonfly1/mavros/distance_sensor/rangefinder_pub/id: 0
+ * /dragonfly1/mavros/distance_sensor/rangefinder_pub/send_tf: False
+ * /dragonfly1/mavros/distance_sensor/rangefinder_pub/sensor_position/x: 0.0
+ * /dragonfly1/mavros/distance_sensor/rangefinder_pub/sensor_position/y: 0.0
+ * /dragonfly1/mavros/distance_sensor/rangefinder_pub/sensor_position/z: -0.1
+ * /dragonfly1/mavros/distance_sensor/rangefinder_sub/id: 1
+ * /dragonfly1/mavros/distance_sensor/rangefinder_sub/orientation: PITCH_270
+ * /dragonfly1/mavros/distance_sensor/rangefinder_sub/subscriber: True
+ * /dragonfly1/mavros/fake_gps/eph: 2.0
+ * /dragonfly1/mavros/fake_gps/epv: 2.0
+ * /dragonfly1/mavros/fake_gps/fix_type: 3
+ * /dragonfly1/mavros/fake_gps/geo_origin/alt: 408.0
+ * /dragonfly1/mavros/fake_gps/geo_origin/lat: 47.3667
+ * /dragonfly1/mavros/fake_gps/geo_origin/lon: 8.55
+ * /dragonfly1/mavros/fake_gps/gps_rate: 5.0
+ * /dragonfly1/mavros/fake_gps/mocap_transform: True
+ * /dragonfly1/mavros/fake_gps/satellites_visible: 5
+ * /dragonfly1/mavros/fake_gps/tf/child_frame_id: fix
+ * /dragonfly1/mavros/fake_gps/tf/frame_id: map
+ * /dragonfly1/mavros/fake_gps/tf/listen: False
+ * /dragonfly1/mavros/fake_gps/tf/rate_limit: 10.0
+ * /dragonfly1/mavros/fake_gps/tf/send: False
+ * /dragonfly1/mavros/fake_gps/use_mocap: True
+ * /dragonfly1/mavros/fake_gps/use_vision: False
+ * /dragonfly1/mavros/fcu_protocol: v2.0
+ * /dragonfly1/mavros/fcu_url: /dev/ttypixhawk:9...
+ * /dragonfly1/mavros/gcs_url: 
+ * /dragonfly1/mavros/global_position/child_frame_id: base_link
+ * /dragonfly1/mavros/global_position/frame_id: map
+ * /dragonfly1/mavros/global_position/gps_uere: 1.0
+ * /dragonfly1/mavros/global_position/rot_covariance: 99999.0
+ * /dragonfly1/mavros/global_position/tf/child_frame_id: base_link
+ * /dragonfly1/mavros/global_position/tf/frame_id: map
+ * /dragonfly1/mavros/global_position/tf/global_frame_id: earth
+ * /dragonfly1/mavros/global_position/tf/send: False
+ * /dragonfly1/mavros/global_position/use_relative_alt: True
+ * /dragonfly1/mavros/image/frame_id: px4flow
+ * /dragonfly1/mavros/imu/angular_velocity_stdev: 0.0003490659 // 0...
+ * /dragonfly1/mavros/imu/frame_id: base_link
+ * /dragonfly1/mavros/imu/linear_acceleration_stdev: 0.0003
+ * /dragonfly1/mavros/imu/magnetic_stdev: 0.0
+ * /dragonfly1/mavros/imu/orientation_stdev: 1.0
+ * /dragonfly1/mavros/landing_target/camera/fov_x: 2.0071286398
+ * /dragonfly1/mavros/landing_target/camera/fov_y: 2.0071286398
+ * /dragonfly1/mavros/landing_target/image/height: 480
+ * /dragonfly1/mavros/landing_target/image/width: 640
+ * /dragonfly1/mavros/landing_target/land_target_type: VISION_FIDUCIAL
+ * /dragonfly1/mavros/landing_target/listen_lt: False
+ * /dragonfly1/mavros/landing_target/mav_frame: LOCAL_NED
+ * /dragonfly1/mavros/landing_target/target_size/x: 0.3
+ * /dragonfly1/mavros/landing_target/target_size/y: 0.3
+ * /dragonfly1/mavros/landing_target/tf/child_frame_id: camera_center
+ * /dragonfly1/mavros/landing_target/tf/frame_id: landing_target
+ * /dragonfly1/mavros/landing_target/tf/listen: False
+ * /dragonfly1/mavros/landing_target/tf/rate_limit: 10.0
+ * /dragonfly1/mavros/landing_target/tf/send: True
+ * /dragonfly1/mavros/local_position/frame_id: map
+ * /dragonfly1/mavros/local_position/tf/child[0m[ INFO] [1455208123.084882103]: FCU URL: /dev/ttypixhawk:921600[0m
+[0m[ INFO] [1455208123.093482378]: serial0: device: /dev/ttypixhawk @ 921600 bps[0m
+[0m[ INFO] [1455208123.103742270]: GCS bridge disabled[0m
+[0m[ INFO] [1455208123.237738312]: Plugin 3dr_radio loaded[0m
+[0m[ INFO] [1455208123.246875373]: Plugin 3dr_radio initialized[0m
+[0m[ INFO] [1455208123.246946057]: Plugin actuator_control blacklisted[0m
+[0m[ INFO] [1455208123.284613171]: Plugin adsb loaded[0m
+[0m[ INFO] [1455208123.299233496]: Plugin adsb initialized[0m
+[0m[ INFO] [1455208123.299302587]: Plugin altitude blacklisted[0m
+[0m[ INFO] [1455208123.299743338]: Plugin cam_imu_sync loaded[0m
+[0m[ INFO] [1455208123.302279029]: Plugin cam_imu_sync initialized[0m
+[0m[ INFO] [1455208123.302823389]: Plugin command loaded[0m
+[0m[ INFO] [1455208123.329476403]: Plugin command initialized[0m
+[0m[ INFO] [1455208123.329983968]: Plugin companion_process_status loaded[0m
+[0m[ INFO] [1455208123.341551185]: Plugin companion_process_status initialized[0m
+[0m[ INFO] [1455208123.341621240]: Plugin debug_value blacklisted[0m
+[0m[ INFO] [1455208123.342124322]: Plugin distance_sensor loaded[0m
+[0m[ INFO] [1455208123.381922246]: Plugin distance_sensor initialized[0m
+[0m[ INFO] [1455208123.382473310]: Plugin fake_gps loaded[0m
+[0m[ INFO] [1455208123.447924565]: Plugin fake_gps initialized[0m
+[0m[ INFO] [1455208123.447988360]: Plugin ftp blacklisted[0m
+[0m[ INFO] [1455208123.448519071]: Plugin global_position loaded[0m
+[0m[ INFO] [1455208123.525284827]: Plugin global_position initialized[0m
+[0m[ INFO] [1455208123.525796965]: Plugin gps_rtk loaded[0m
+[0m[ INFO] [1455208123.537212056]: Plugin gps_rtk initialized[0m
+[0m[ INFO] [1455208123.537282258]: Plugin hil blacklisted[0m
+[0m[ INFO] [1455208123.537794359]: Plugin home_position loaded[0m
+[0m[ INFO] [1455208123.554229334]: Plugin home_position initialized[0m
+[0m[ INFO] [1455208123.554775564]: Plugin imu loaded[0m
+[0m[ INFO] [1455208123.592206145]: Plugin imu initialized[0m
+[0m[ INFO] [1455208123.592752764]: Plugin landing_target loaded[0m
+[0m[ INFO] [1455208123.672098358]: Plugin landing_target initialized[0m
+[0m[ INFO] [1455208123.672826992]: Plugin local_position loaded[0m
+[0m[ INFO] [1455208123.705643553]: Plugin local_position initialized[0m
+[0m[ INFO] [1455208123.706243671]: Plugin log_transfer loaded[0m
+[0m[ INFO] [1455208123.717821888]: Plugin log_transfer initialized[0m
+[0m[ INFO] [1455208123.718425210]: Plugin manual_control loaded[0m
+[0m[ INFO] [1455208123.732136312]: Plugin manual_control initialized[0m
+[0m[ INFO] [1455208123.732638172]: Plugin mocap_pose_estimate loaded[0m
+[0m[ INFO] [1455208123.750602598]: Plugin mocap_pose_estimate initialized[0m
+[0m[ INFO] [1455208123.751129032]: Plugin mount_control loaded[0m
+[0m[ INFO] [1455208123.766887464]: Plugin mount_control initialized[0m
+[0m[ INFO] [1455208123.767420750]: Plugin obstacle_distance loaded[0m
+[0m[ INFO] [1455208123.780618677]: Plugin obstacle_distance initialized[0m
+[0m[ INFO] [1455208123.781142981]: Plugin odom loaded[0m
+[0m[ INFO] [1455208123.798106630]: Plugin odom initialized[0m
+[0m[ INFO] [1455208123.798635250]: Plugin onboard_computer_status loaded[0m
+[0m[ INFO] [1455208123.810205301]: Plugin onboard_computer_status initialized[0m
+[0m[ INFO] [1455208123.810781308]: Plugin param loaded[0m
+[0m[ INFO] [1455208123.822473560]: Plugin param initialized[0m
+[0m[ INFO] [1455208123.822550522]: Plugin px4flow blacklisted[0m
+[0m[ INFO] [1455208123.822988569]: Plugin rangefinder loaded[0m
+[0m[ INFO] [1455208123.825705090]: Plugin rangefinder initialized[0m
+[0m[ INFO] [1455208123.826244968]: Plugin rc_io loaded[0m
+[0m[ INFO] [1455208123.842394966]: Plugin rc_io initialized[0m
+[0m[ INFO] [1455208123.842470613]: Plugin safety_area blacklisted[0m
+[0m[ INFO] [1455208123.842948474]: Plugin setpoint_accel loaded[0m
+[0m[ INFO] [1455208123.858175620]: Plugin setpoint_accel initialized[0m
+[0m[ INFO] [1455208123.858841385]: Plugin setpoint_attitude loaded[0m
+[0m[ INFO] [1455208123.903895762]: Plugin setpoint_attitude initialized[0m
+[0m[ INFO] [1455208123.904504231]: Plugin setpoint_position loaded[0m
+[0m[ INFO] [1455208123.979281007]: Plugin setpoint_position initialized[0m
+[0m[ INFO] [1455208123.979903995]: Plugin setpoint_raw loaded[0m
+[0m[ INFO] [1455208124.020403849]: Plugin setpoint_raw initialized[0m
+[0m[ INFO] [1455208124.020994264]: Plugin setpoint_trajectory loaded[0m
+[0m[ INFO] [1455208124.043419380]: Plugin setpoint_trajectory initialized[0m
+[0m[ INFO] [1455208124.044004258]: Plugin setpoint_velocity loaded[0m
+[0m[ INFO] [1455208124.070658235]: Plugin setpoint_velocity initialized[0m
+[0m[ INFO] [1455208124.071301241]: Plugin sys_status loaded[0m
+[0m[ INFO] [1455208124.117846274]: Plugin sys_status initialized[0m
+[0m[ INFO] [1455208124.118427522]: Plugin sys_time loaded[0m
+[0m[ INFO] [1455208124.146755893]: TM: Timesync mode: MAVLINK[0m
+[0m[ INFO] [1455208124.151923588]: Plugin sys_time initialized[0m
+[0m[ INFO] [1455208124.152439004]: Plugin trajectory loaded[0m
+[0m[ INFO] [1455208124.178181833]: Plugin trajectory initialized[0m
+[0m[ INFO] [1455208124.179076871]: Plugin vfr_hud loaded[0m
+[0m[ INFO] [1455208124.181767503]: Plugin vfr_hud initialized[0m
+[0m[ INFO] [1455208124.181862927]: Plugin vibration blacklisted[0m
+[0m[ INFO] [1455208124.182476434]: Plugin vision_pose_estimate loaded[0m
+[0m[ INFO] [1455208124.220272897]: Plugin vision_pose_estimate initialized[0m
+[0m[ INFO] [1455208124.220368988]: Plugin vision_speed_estimate blacklisted[0m
+[0m[ INFO] [1455208124.221066011]: Plugin waypoint loaded[0m
+[0m[ INFO] [1455208124.242383575]: Plugin waypoint initialized[0m
+[0m[ INFO] [1455208124.242483499]: Plugin wheel_odometry blacklisted[0m
+[0m[ INFO] [1455208124.243277983]: Plugin wind_estimation loaded[0m
+[0m[ INFO] [1455208124.247129741]: Plugin wind_estimation initialized[0m
+[0m[ INFO] [1455208124.247446031]: Built-in SIMD instructions: None[0m
+[0m[ INFO] [1455208124.247517937]: Built-in MAVLink package version: 2020.5.21[0m
+[0m[ INFO] [1455208124.247584140]: Known MAVLink dialects: common ardupilotmega ASLUAV autoquad icarous matrixpilot paparazzi slugs standard uAvionix ualberta[0m
+[0m[ INFO] [1455208124.247690212]: MAVROS started. MY ID 1.240, TARGET ID 1.1[0m
+[0m[ INFO] [1455208125.119896606]: CON: Got HEARTBEAT, connected. FCU: ArduPilot[0m
+[0m[ INFO] [1455208125.132917055]: RC_CHANNELS message detected![0m
+[0m[ INFO] [1455208125.135837498]: IMU: Raw IMU message used.[0m
+[33m[ WARN] [1455208126.128737176]: CMD: Unexpected command 520, result 0[0m
+[0m[ INFO] [1455208126.131691211]: WP: Using MISSION_ITEM_INT[0m
+[0m[ INFO] [1455208126.131794153]: VER: 1.1: Capabilities         0x000000000000fbef[0m
+[0m[ INFO] [1455208126.131851226]: VER: 1.1: Flight software:     040003ff ( ffd0862)[0m
+[0m[ INFO] [1455208126.131930651]: VER: 1.1: Middleware software: 00000000 (        )[0m
+[0m[ INFO] [1455208126.132018723]: VER: 1.1: OS software:         00000000 ( d4fce84)[0m
+[0m[ INFO] [1455208126.132078241]: VER: 1.1: Board hardware:      00000000[0m
+[0m[ INFO] [1455208126.132136850]: VER: 1.1: VID/PID:             0000:0000[0m
+[0m[ INFO] [1455208126.132192646]: VER: 1.1: UID:                 0000000000000000[0m
+[0m[ INFO] [1455208135.120395065]: HP: requesting home position[0m
+[0m[ INFO] [1455208135.127119229]: FCU: ArduCopter V4.0.3 (ffd08628)[0m
+[0m[ INFO] [1455208135.129074895]: FCU: ChibiOS: d4fce84e[0m
+[0m[ INFO] [1455208135.129197763]: FCU: CubeBlack 0031003E 33365101 36353335[0m
+[0m[ INFO] [1455208135.131092651]: FCU: RCOut: PWM:1-12[0m
+[0m[ INFO] [1455208135.132081188]: FCU: Frame: QUAD[0m
+[33m[ WARN] [1455208136.121960814]: PR: request list timeout, retries left 2[0m
+[33m[ WARN] [1455208137.122272218]: PR: request list timeout, retries left 1[0m
+[33m[ WARN] [1455208138.123578620]: PR: request list timeout, retries left 0[0m
+[33m[ WARN] [1455208140.124736528]: CMD: Command 410 -- wait ack timeout[0m
+[33m[ WARN] [1455208140.125981374]: CMD: Unexpected command 410,[WARN] [1455208617.048158]: Inbound TCP/IP connection failed: connection from sender terminated before handshake header received. 0 bytes were received. Please check sender for additional details.
+[WARN] [1455208854.983343]: Inbound TCP/IP connection failed: connection from sender terminated before handshake header received. 0 bytes were received. Please check sender for additional details.
+]2;master_sync[INFO] [1455208121.254646]: ignore_hosts: []
+[INFO] [1455208121.258569]: sync_hosts: []
+[INFO] [1455208121.266899]: sync_topics_on_demand: False
+[INFO] [1455208121.271261]: resync_on_reconnect: True
+[INFO] [1455208121.274945]: resync_on_reconnect_timeout: 0
+[INFO] [1455208121.303662]: listen for updates on /master_discovery/changes
+[INFO] [1455208121.347476]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208151.467471]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208181.563115]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208211.663306]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208241.765590]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208271.859631]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208301.963249]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208332.053582]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208362.096901]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208392.141309]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208422.193610]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208452.293379]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208482.383291]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208512.486167]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208542.570550]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208572.681252]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208602.772691]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208632.815353]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208662.859252]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208692.903665]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208723.026518]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208753.116390]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208783.217973]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208813.312875]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208843.412195]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208873.507062]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208903.551555]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208933.595347]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208963.671507]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455208993.774891]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209023.880779]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209053.981557]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209084.087522]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209114.175963]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209144.276932]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209174.375958]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209204.417849]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209234.460636]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209264.502640]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209294.581838]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209324.687736]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209354.774546]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209384.880635]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209414.970881]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209445.069383]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209475.167549]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209505.276757]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209535.320096]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209565.364726]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209595.466912]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209625.574023]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209655.671273]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209685.780656]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209715.873288]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209745.987013]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209776.077209]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209806.176735]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209836.273703]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209866.375395]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209896.475139]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209926.519595]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209956.564154]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455209986.689508]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210016.786144]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210046.892187]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210076.982274]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210107.087566]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210137.181054]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210167.332985]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210197.377617]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210227.419851]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210257.506521]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.lo[WARN] [1455210425.573283]: Inbound TCP/IP connection failed: connection from sender terminated before handshake header received. 0 bytes were received. Please check sender for additional details.
+cal']
+[INFO] [1455210287.611040]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210317.713153]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210347.809810]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210377.911196]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210408.008052]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210438.074983]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210468.124556]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210498.170047]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210528.213763]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210558.257348]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210588.359499]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210618.459306]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210648.562187]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210678.660079]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210708.761856]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210738.860846]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210768.961677]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210799.004550]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210829.046987]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210859.089276]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210889.146574]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210919.246328]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210949.345296]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455210979.447609]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455211009.531598]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455211039.631193]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455211069.724812]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455211099.823648]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455211129.926795]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455211159.999328]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455211190.041352]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455211220.085602]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455211250.145650]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455211280.249916]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455211310.337838]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455211340.440992]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455211370.538872]: ROS masters obtained from '/master_discovery/list_masters': ['dragonfly1.local']
+[INFO] [1455211400.636705]: ROS masters obtained from '/m

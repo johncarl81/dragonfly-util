@@ -14,11 +14,11 @@ def writescatter(input):
     alt = []
     with open(input) as csvfile:
         for row in csv.reader(csvfile):
-            if(float(row[0]) > 420):
-                readings.append(float(row[0]))
-                lat.append(float(row[1]))
-                lon.append(float(row[2]))
-                alt.append(float(row[3]))
+            if(float(row[1]) > 420):
+                readings.append(float(row[1]))
+                lat.append(float(row[2]))
+                lon.append(float(row[3]))
+                alt.append(float(row[4]))
 
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')

@@ -1,0 +1,23 @@
+Setup complete
+Setup complete
+Setup complete
+Setup complete
+Verifying disarmed...
+Is not armed, continue
+Set Mode STABILIZE
+Set mode result mode_sent: True
+Arming
+Arming result success: True
+result: 0
+Sleeping for 5
+Set Mode GUIDED
+Set mode result mode_sent: True
+Take off
+Take off result success: False
+result: 4
+Setup complete
+Shutdown
+Setup complete
+Shutdown
+Setup complete
+Shutdown
