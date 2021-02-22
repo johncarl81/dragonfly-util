@@ -6,14 +6,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from pykrige.ok import OrdinaryKriging
+from VirtualPlume import dotdict
+from matplotlib.colors import LinearSegmentedColormap
 
 PARTITIONS = 10
-
-class dotdict(dict):
-    """dot.notation access to dictionary attributes"""
-    __getattr__ = dict.get
-    __setattr__ = dict.__setitem__
-    __delattr__ = dict.__delitem__
 
 class Reading:
     def __init__(self, value, lat, lon):
@@ -45,9 +41,9 @@ def writecsv(input, output, start_time):
         for reading in readings:
             outputFile.write("{}, {}, {}, {}, {}\n".format(reading.time, reading.value, reading.lat, reading.lon, reading.alt))
 
-def plot_flight(ax, flight_data, color):
-    ax.plot([v.lon for v in flight_data], [v.lat for v in flight_data], color = color, linestyle='-', zorder=3)
-    markersize = 300
+def plot_flight(ax, flight_data, color, style, name):
+    ax.plot([v.lon for v in flight_data], [v.lat for v in flight_data], color = color, linestyle=style, zorder=3, label=name)
+    markersize = 50
     ax.scatter(flight_data[0].lon, flight_data[0].lat, color = color, marker = 'o', s = markersize, zorder=3)
 
     for i in range(0, PARTITIONS):
@@ -75,24 +71,41 @@ def linearRegressionNormal(readingPositions):
     })
 
 def heatmap(data, fig, ax, nlags):
+    # get colormap
+    ncolors = 256
+    reds_color_array = plt.get_cmap('Reds')(range(ncolors))
+    blues_color_array = plt.get_cmap('Blues')(range(ncolors))
+
+    # change alpha values
+    reds_color_array[:,-1] = np.linspace(0.0,1.0,ncolors)
+    blues_color_array[:,-1] = np.linspace(0.0,1.0,ncolors)
+
+    # create a colormap object
+    reds_map_object = LinearSegmentedColormap.from_list(name='reds_alpha',colors=reds_color_array)
+    plt.register_cmap(cmap=reds_map_object)
+    blues_map_object = LinearSegmentedColormap.from_list(name='blues_alpha',colors=blues_color_array)
+    plt.register_cmap(cmap=blues_map_object)
 
     lons=np.array([v.lon for v in data])
     lats=np.array([v.lat for v in data])
     data=np.array([v.value for v in data])
 
     grid_space = (max(lats) - min(lats)) / 100
-    grid_lon = np.arange(np.amin(lons), np.amax(lons), grid_space) #grid_space is the desired delta/step of the output array
-    grid_lat = np.arange(np.amin(lats), np.amax(lats), grid_space)
+    grid_lon = np.arange(np.amin(lons) - 0.00003, np.amax(lons) + 0.00003, grid_space) #grid_space is the desired delta/step of the output array
+    grid_lat = np.arange(np.amin(lats) - 0.00002, np.amax(lats) + 0.00004, grid_space)
 
     OK = OrdinaryKriging(lons, lats, data, variogram_model='gaussian', verbose=True, nlags=nlags)
     z1, ss1 = OK.execute('grid', grid_lon, grid_lat)
 
     xintrp, yintrp = np.meshgrid(grid_lon, grid_lat)
 
-    cs=ax.contour(xintrp, yintrp, z1, np.linspace(min(data), max(data), 100), cmap='Blues', alpha=0.6, zorder=2)
+    cs=ax.contourf(xintrp, yintrp, z1, np.linspace(420, 520, 100), cmap='blues_alpha', zorder=2)
+
+    cs_lines = ax.contour(xintrp, yintrp, z1, np.linspace(420, 520, 20), cmap='reds_alpha', linewidths = 0.8)
 
     cbar = fig.colorbar(cs)
-    cbar.ax.set_ylabel('CO2 PPM')
+    cbar.add_lines(cs_lines)
+    cbar.ax.set_ylabel('$CO_2$ (ppm)')
 
 def main():
     df1data = buildReadings('df1', 'gradient_descent_mission.log')
@@ -103,18 +116,30 @@ def main():
     df2data = df2data[550:1400]
     df3data = df3data[550:1400]
 
-    fig, ax = plt.subplots(figsize=(10,10))
+    fig, ax = plt.subplots(figsize=(5, 5))
+    params = {'mathtext.default': 'regular' }
+    plt.rcParams.update(params)
 
-    plot_flight(ax, df1data, 'b')
-    plot_flight(ax, df2data, 'r')
-    plot_flight(ax, df3data, 'g')
+    plot_flight(ax, df1data, 'C0', '-', 'dragonfly1')
+    plot_flight(ax, df2data, 'C1', '--', 'dragonfly2')
+    plot_flight(ax, df3data, 'C2', '-.', 'dragonfly3')
 
     ax.set_ylabel('Latitude')
     ax.set_xlabel('Longitude')
     ax.ticklabel_format(useOffset=False)
 
+    ax.legend()
+
+    # lmin = -106.59838
+    # lmax = -106.59429
+    # rmin = 35.19344
+    # rmax = 35.19665
+    #
+    # img = plt.imread('balloon_fiesta.png')
+    # ax.imshow(img, extent=[lmin, lmax, rmin, rmax])
+
     connection_line_color = 'k'
-    connection_line_style = '-.'
+    connection_line_style = ':'
 
 
     def plot_connections(index):
@@ -137,7 +162,14 @@ def main():
 
     heatmap(df1data + df2data + df3data, fig, ax, 20)
 
-    plt.savefig('Balloon_Fiesta_Gradient_Descent.png', dpi=300, bbox_inches='tight')
+    # plt.xlim(-106.5968, -106.5958)
+    # plt.ylim(35.1940, 35.1953)
+
+    ax.locator_params(nbins=3)
+    plt.yticks(rotation=90)
+
+    plt.tight_layout()
+    plt.savefig('Balloon_Fiesta_Gradient_Descent.pdf', dpi=300, bbox_inches='tight')
 
 if __name__ == '__main__':
     main()

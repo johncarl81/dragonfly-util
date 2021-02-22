@@ -20,24 +20,39 @@ from operator import itemgetter
 def minLat(lats, lons):
     minIndex = min(enumerate(lats), key=itemgetter(1))[0]
 
-    return [lons[minIndex], lats[minIndex]]
+    return [lons[minIndex] - 0.000005, lats[minIndex] - 0.000005]
 
 def minLon(lats, lons):
     minIndex = min(enumerate(lons), key=itemgetter(1))[0]
 
-    return [lons[minIndex], lats[minIndex]]
+    return [lons[minIndex] - 0.000005, lats[minIndex] + 0.000005]
 
 def maxLat(lats, lons):
-    minIndex = max(enumerate(lats), key=itemgetter(1))[0]
+    maxIndex = max(enumerate(lats), key=itemgetter(1))[0]
 
-    return [lons[minIndex], lats[minIndex]]
+    return [lons[maxIndex] + 0.000005, lats[maxIndex] +  0.000005]
 
 def maxLon(lats, lons):
-    minIndex = max(enumerate(lons), key=itemgetter(1))[0]
+    maxIndex = max(enumerate(lons), key=itemgetter(1))[0]
 
-    return [lons[minIndex], lats[minIndex]]
+    return [lons[maxIndex] + 0.000005, lats[maxIndex] - 0.000005]
 
 def heatmap(input, output, nlags):
+
+    # get colormap
+    ncolors = 256
+    reds_color_array = plt.get_cmap('Reds')(range(ncolors))
+    blues_color_array = plt.get_cmap('Blues')(range(ncolors))
+
+    # change alpha values
+    reds_color_array[:,-1] = np.linspace(0.0,1.0,ncolors)
+    blues_color_array[:,-1] = np.linspace(0.0,1.0,ncolors)
+
+    # create a colormap object
+    reds_map_object = LinearSegmentedColormap.from_list(name='reds_alpha',colors=reds_color_array)
+    plt.register_cmap(cmap=reds_map_object)
+    blues_map_object = LinearSegmentedColormap.from_list(name='blues_alpha',colors=blues_color_array)
+    plt.register_cmap(cmap=blues_map_object)
 
     df=pd.read_csv(input, ", ")
 
@@ -53,17 +68,25 @@ def heatmap(input, output, nlags):
     z1, ss1 = OK.execute('grid', grid_lon, grid_lat)
 
     xintrp, yintrp = np.meshgrid(grid_lon, grid_lat)
-    fig, ax = plt.subplots(figsize=(10,10))
+    fig, ax = plt.subplots(figsize=(12,4))
+    params = {'mathtext.default': 'regular' }
+    plt.rcParams.update(params)
 
     lmin = -106.658654
     lmax = -106.652426
     rmin = 35.824343
     rmax = 35.827756
 
-    img = plt.imread('humming_ortho_15cm_wgs84.tif')
+    img = plt.imread('humming_ortho_5cm_wgs84.tif')
     ax.imshow(img, extent=[lmin, lmax, rmin, rmax])
+    # img2 = plt.imread('hummingbird_source_outline.png')
+    # ax.imshow(img2, extent=[lmin, lmax, rmin, rmax])
 
-    cs=ax.contourf(xintrp, yintrp, z1, np.linspace(min(data), max(data), 100),extend='both', cmap='jet', alpha=0.5)
+    cs=ax.contourf(xintrp, yintrp, z1, np.linspace(425, 480, 100), cmap='blues_alpha')
+
+    cs_lines = ax.contour(xintrp, yintrp, z1, np.linspace(425, 480, 20), cmap='reds_alpha', linewidths = 0.8)
+
+    # ax.clabel(cs_lines, fontsize=9, inline=True)
 
     # clip contours by polygon
     clip_vertices = [minLat(lats, lons), minLon(lats, lons), maxLat(lats, lons), maxLon(lats, lons)]
@@ -71,18 +94,27 @@ def heatmap(input, output, nlags):
     ax.add_patch(clip_map)
     for collection in cs.collections:
         collection.set_clip_path(clip_map)
+    for collection in cs_lines.collections:
+        collection.set_clip_path(clip_map)
 
-    plt.xlim(-106.6558, -106.655)
-    plt.ylim(35.8255, 35.82627)
+    plt.xlim(-106.6557, -106.6551)
+    plt.ylim(35.82575, 35.82602)
 
-    ax.plot(lons, lats, 'k--')
+    ax.plot(lons, lats, 'k--', lw=0.5)
+
+    ax.plot(-106.655342, 35.825955, marker='*', c='r',markeredgewidth=1, markeredgecolor=(0, 0, 0, 1), markersize=12)
 
     cbar = fig.colorbar(cs)
-    cbar.ax.set_ylabel('CO2 PPM')
+    cbar.add_lines(cs_lines)
+
+    plt.yticks(rotation=90)
+    ax.locator_params(nbins=4)
+    cbar.ax.set_ylabel('$CO_2$ (ppm)')
 
     ax.set_ylabel('Latitude')
     ax.set_xlabel('Longitude')
     ax.ticklabel_format(useOffset=False)
+    plt.tight_layout()
 
     plt.savefig(output, dpi=300, bbox_inches='tight')
 
@@ -97,4 +129,4 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    heatmap('csv/hummingbird_1_4_2021_LAWNMOWER1.csv', 'Hummingbird_CO2_Concentration.png', 6)
+    heatmap('csv/hummingbird_1_4_2021_LAWNMOWER1.csv', 'Hummingbird_CO2_Concentration.pdf', 6)

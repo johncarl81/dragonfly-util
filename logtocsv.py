@@ -16,6 +16,8 @@ class Reading:
 def buildReadings(input, skipZeroing, start_time):
     readings = []
     time_diff = None
+    current_altitude = None
+    previous_altitude = None
     with open(input, 'r') as inputFile:
         line = inputFile.readline()
         zeroing = False
@@ -29,13 +31,23 @@ def buildReadings(input, skipZeroing, start_time):
                 zeroing = True
 
             if not skipZeroing or not zeroing:
-                if len(lineparts) == 19 and lineparts[4] == '"M' and float(lineparts[7]) > 420:
-                    if time_diff is None:
-                        first_time = datetime.datetime.strptime("{} {}".format(lineparts[0], lineparts[1]), '%Y-%m-%d %H:%M:%S.%f')
-                        time_diff = start_time - first_time
-                        print time_diff
-                    reading_time = datetime.datetime.strptime("{} {}".format(lineparts[0], lineparts[1]), '%Y-%m-%d %H:%M:%S.%f')
-                    readings.append(Reading(reading_time + time_diff, lineparts[7], lineparts[16], lineparts[17], float(lineparts[18])))
+                try:
+                    altitude_smooth = False
+                    if len(lineparts) == 19:
+                        current_altitude = float(lineparts[18])
+                        if current_altitude is not None and (previous_altitude is None or abs(current_altitude - previous_altitude) < 0.6):
+                            previous_altitude = current_altitude
+                            altitude_smooth = True
+
+                    if len(lineparts) == 19 and lineparts[4] == '"M' and float(lineparts[7]) > 420:
+                        if time_diff is None:
+                            first_time = datetime.datetime.strptime("{} {}".format(lineparts[0], lineparts[1]), '%Y-%m-%d %H:%M:%S.%f')
+                            time_diff = start_time - first_time
+                            print time_diff
+                        reading_time = datetime.datetime.strptime("{} {}".format(lineparts[0], lineparts[1]), '%Y-%m-%d %H:%M:%S.%f')
+                        readings.append(Reading(reading_time + time_diff, lineparts[7], lineparts[16], lineparts[17], lineparts[18]))
+                except ValueError:
+                    print "Error reading"
             
 
     return readings
