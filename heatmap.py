@@ -7,73 +7,54 @@ import pandas as pd
 from pykrige.ok import OrdinaryKriging
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
+from operator import itemgetter
 
 def heatmap(input, output, start, end, nlags):
 
-    # get colormap
-    ncolors = 256
-    reds_color_array = plt.get_cmap('Reds')(range(ncolors))
-    blues_color_array = plt.get_cmap('Blues')(range(ncolors))
-
-    # change alpha values
-    reds_color_array[:,-1] = np.linspace(0.0,1.0,ncolors)
-    blues_color_array[:,-1] = np.linspace(0.0,1.0,ncolors)
-
-    # create a colormap object
-    reds_map_object = LinearSegmentedColormap.from_list(name='reds_alpha',colors=reds_color_array)
-    plt.register_cmap(cmap=reds_map_object)
-    blues_map_object = LinearSegmentedColormap.from_list(name='blues_alpha',colors=blues_color_array)
-    plt.register_cmap(cmap=blues_map_object)
-
-    df=pd.read_csv(input, ",")
+    df=pd.read_csv(input, ", ")
 
     lons=np.array(df['lon'])
     lats=np.array(df['lat'])
     data=np.array(df['co2'])
+
+    print len(lons)
 
     if start is not None and end is not None:
         lons = lons[start:end]
         lats = lats[start:end]
         data = data[start:end]
 
+    # lons = lons[0::3]
+    # lats = lats[0::3]
+    # data = data[0::3]
+
     print "{} {}".format((max(lons) - min(lons)), (max(lats) - min(lats)))
 
     grid_space = (max(lats) - min(lats)) / 100
-    grid_lon = np.arange(np.amin(lons), np.amax(lons), grid_space) #grid_space is the desired delta/step of the output array
-    grid_lat = np.arange(np.amin(lats), np.amax(lats), grid_space)
+    grid_lon = np.arange(np.amin(lons) - 0.000002, np.amax(lons) + 0.000002, grid_space) #grid_space is the desired delta/step of the output array
+    grid_lat = np.arange(np.amin(lats) - 0.000002, np.amax(lats) + 0.000002, grid_space)
 
-    OK = OrdinaryKriging(lons, lats, data, variogram_model='gaussian', verbose=True, nlags=nlags)
+    OK = OrdinaryKriging(lons, lats, data, variogram_model='linear', verbose=True, nlags=nlags)
     z1, ss1 = OK.execute('grid', grid_lon, grid_lat)
 
     xintrp, yintrp = np.meshgrid(grid_lon, grid_lat)
-    fig, ax = plt.subplots(figsize=(10,10))
+    fig, ax = plt.subplots(figsize=(6, 4))
     params = {'mathtext.default': 'regular' }
     plt.rcParams.update(params)
 
-    # lmin = -106.658654
-    # lmax = -106.652426
-    # rmin = 35.824343
-    # rmax = 35.827756
-    #
-    # img = plt.imread('humming_ortho_15cm_wgs84.tif')
-    # ax.imshow(img, extent=[lmin, lmax, rmin, rmax])
-    #
-    # cs=ax.contourf(xintrp, yintrp, z1, np.linspace(min(data), max(data), 100),cmap='jet',alpha=0.5)
+    cs=ax.contourf(xintrp, yintrp, z1, np.linspace(420, 500, 20), extend='max', cmap='Blues')
 
-    lmin = -106.59838
-    lmax = -106.59429
-    rmin = 35.19344
-    rmax = 35.19665
+    cs_lines = ax.contour(xintrp, yintrp, z1, np.linspace(420, 500, 20), cmap='Reds', linewidths = 0.9)
 
+    ax.plot(-106.655342 - 0.000078, 35.825955 - 0.000035, marker='X', c='r', markeredgewidth=1, markeredgecolor=(0, 0, 0, 1), markersize=10)
 
-    img = plt.imread('balloon_fiesta.png')
-    ax.imshow(img, extent=[lmin, lmax, rmin, rmax])
+    max_co2_index = max(enumerate(data), key=itemgetter(1))[0]
+    # ax.plot(lons[max_co2_index], lats[max_co2_index], marker='*', c='b',markeredgewidth=1, markeredgecolor=(0, 0, 0, 1), markersize=12)
+    print "Max CO2: {}".format(data[max_co2_index])
 
-    cs=ax.contourf(xintrp, yintrp, z1, np.linspace(min(data), max(data) - 15, 100), cmap='blues_alpha')
+    # cs_lines = ax.contour(xintrp, yintrp, z1, np.linspace(min(data), max(data) - 15, 20), cmap='reds_alpha', linewidths = 0.8)
 
-    cs_lines = ax.contour(xintrp, yintrp, z1, np.linspace(min(data), max(data) - 15, 20), cmap='reds_alpha', linewidths = 0.8)
-
-    ax.clabel(cs_lines, fontsize=9, inline=True)
+    # ax.clabel(cs_lines, fontsize=9, inline=True)
 
     # plt.xlim(-106.6558, -106.655)
     # plt.ylim(35.8255, 35.82627)
@@ -88,8 +69,8 @@ def heatmap(input, output, start, end, nlags):
     ax.set_xlabel('Longitude')
     ax.ticklabel_format(useOffset=False)
 
-    plt.xlim(-106.5968, -106.5958)
-    plt.ylim(35.1940, 35.1953)
+    # plt.xlim(min(lons), max(lons))
+    # plt.ylim(min(lats), max(lats))
 
     plt.tight_layout()
     plt.savefig(output,dpi=300,bbox_inches='tight')

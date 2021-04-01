@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import math
+import math, datetime
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -8,17 +8,16 @@ from sklearn.linear_model import LinearRegression
 from pykrige.ok import OrdinaryKriging
 from VirtualPlume import dotdict
 from matplotlib.colors import LinearSegmentedColormap
+from matplotlib.patches import Rectangle
 
 PARTITIONS = 10
 
 class Reading:
-    def __init__(self, value, lat, lon):
+    def __init__(self, value, lat, lon, time):
         self.value = float(value)
         self.lat = float(lat)
         self.lon = float(lon)
-
-    def add(self, latadd, lonadd):
-        return Reading(self.value, self.lat + latadd, self.lon + lonadd)
+        self.time = datetime.datetime.strptime(time, '%Y-%m-%d %H:%M:%S')
 
 def buildReadings(input):
     df=pd.read_csv(input, ",")
@@ -26,11 +25,12 @@ def buildReadings(input):
     lons=np.array(df['lon'])
     lats=np.array(df['lat'])
     data=np.array(df['co2'])
+    time=np.array(df['time'])
 
     readings = []
 
     for i in range(len(lons)):
-        readings.append(Reading(data[i], lats[i], lons[i]))
+        readings.append(Reading(data[i], lats[i], lons[i], time[i]))
 
     return readings
 
@@ -41,7 +41,7 @@ def plot_flight(ax, flight_data, color, style, name):
 
     for i in range(1, PARTITIONS):
         middle = i * len(flight_data) / PARTITIONS
-        ax.scatter(flight_data[middle].lon, flight_data[middle].lat, color = color, marker = '>', s = markersize, zorder=3)
+        ax.scatter(flight_data[middle].lon, flight_data[middle].lat, color = color, marker = 's', s = markersize, zorder=3)
     last = len(flight_data) - 1
     ax.scatter(flight_data[last].lon, flight_data[last].lat, color = color, marker='X', s = markersize, zorder=3)
 
@@ -62,6 +62,22 @@ def linearRegressionNormal(readingPositions):
         "x": model.coef_[0],
         "y": model.coef_[1]
     })
+
+def addRuler(plt, ax, length):
+    lowerleft = [plt.xlim()[0], plt.ylim()[0]]
+    upperright = [plt.xlim()[1], plt.ylim()[1]]
+
+    # Calculate width by latitide
+    earthCircumference = 40008000
+    width = abs(1.0 * length / ((earthCircumference / 360) * math.cos(lowerleft[1] * 0.01745)))
+    height = (upperright[1] - lowerleft[1]) * 0.018
+
+    location = [plt.xlim()[0] + (plt.xlim()[1] - plt.xlim()[0]) *.95 - length, plt.ylim()[0] + (plt.ylim()[1] - plt.ylim()[0]) *.03]
+
+    ax.add_patch(Rectangle(location, width, height, ec=(0,0,0,1), fc=(1,1,1,1)))
+    ax.add_patch(Rectangle(location, width/2, height, ec=(0,0,0,1), fc=(0,0,0,1)))
+    ax.annotate("0", xy=(location[0], location[1] + (1.5 * height)), ha='center')
+    ax.annotate("{} m".format(length), xy=(location[0] + width, location[1] + (1.5 * height)), ha='center')
 
 def heatmap(data, fig, ax, nlags):
     # get colormap
@@ -92,13 +108,27 @@ def heatmap(data, fig, ax, nlags):
 
     xintrp, yintrp = np.meshgrid(grid_lon, grid_lat)
 
-    cs = ax.contourf(xintrp, yintrp, z1, np.linspace(420, 500, 100), cmap='blues_alpha', zorder=2)
+    cs = ax.contourf(xintrp, yintrp, z1, np.linspace(420, 500, 100), cmap='Blues', zorder=2)
 
-    cs_lines = ax.contour(xintrp, yintrp, z1, np.linspace(420, 500, 20), cmap='reds_alpha', linewidths = 0.8)
+    cs_lines = ax.contour(xintrp, yintrp, z1, np.linspace(420, 500, 20), cmap='Reds', linewidths = 0.8)
 
     cbar = fig.colorbar(cs)
     cbar.add_lines(cs_lines)
     cbar.ax.set_ylabel('$CO_2$ (ppm)')
+
+def distance(one, two):
+    earthCircumference = 40008000
+    dx = (one.lon - two.lon) * (earthCircumference / 360) * math.cos(one.lat * 0.01745)
+    dy = (one.lat - two.lat) * (earthCircumference / 360)
+
+    return math.sqrt((dx * dx) + (dy * dy))
+
+def distanceList(one, two):
+    return [distance(tuple[0], tuple[1]) for tuple in zip(one, two)]
+
+def timeList(data):
+    # return [d.time for d in data]
+    return range(len(data))
 
 def main():
     df2data = buildReadings('csv/balloon_fiesta_flocking_df2.csv')
@@ -109,9 +139,13 @@ def main():
     df3data = df3data[1200:1700]
     df4data = df4data[1190:1690]
 
-    fig, ax = plt.subplots(figsize=(5, 5))
+    fig, ax = plt.subplots(figsize=(5, 3.8))
     params = {'mathtext.default': 'regular' }
     plt.rcParams.update(params)
+    plt.rcParams['font.family'] = 'serif'
+    plt.rcParams['font.serif'] = ['Times New Roman'] + plt.rcParams['font.serif']
+    plt.rcParams['pdf.fonttype'] = 42
+    plt.rcParams['ps.fonttype'] = 42
 
     # lmin = -106.59838
     # lmax = -106.59429
@@ -165,6 +199,34 @@ def main():
 
     plt.tight_layout()
     plt.savefig('Balloon_Fiesta_Flocking.pdf', dpi=300, bbox_inches='tight')
+
+    plt.clf()
+    params = {'mathtext.default': 'regular' }
+    plt.rcParams.update(params)
+
+    plt.plot(timeList(df2data), distanceList(df2data, df3data), color = 'C0', linestyle='--', label='$|x_{1,2}|$')
+    plt.plot(timeList(df2data), distanceList(df3data, df4data), color = 'C0', linestyle=':',  label='$|x_{2,3}|$')
+    plt.plot(timeList(df2data), [math.sqrt(6*6+6*6)]*len(df2data), color = 'C0', linestyle='-', lw=0.8, label='$|x_{1,2}|$ and $|x_{2,3}|$ target separation: 8.5m')
+    plt.plot(timeList(df2data), distanceList(df4data, df2data), color = 'C1', linestyle='-.', label='$|x_{1,3}|$')
+    plt.plot(timeList(df2data), [6+6]*len(df2data), color = 'C1', linestyle='-', lw=0.8, label='$|x_{1,3}|$ target separation: 12m')
+    plt.legend()
+
+    print "DF1,2 Min: {} Max{}".format(min(distanceList(df2data, df3data)), max(distanceList(df2data, df3data)))
+    print "DF2,3 Min: {} Max{}".format(min(distanceList(df3data, df4data)), max(distanceList(df3data, df4data)))
+    print "DF3,1 Min: {} Max{}".format(min(distanceList(df2data, df4data)), max(distanceList(df2data, df4data)))
+
+
+    print "DF1,2 Min: {} Max{}".format(min(distanceList(df2data, df3data)) - math.sqrt(6*6+6*6), max(distanceList(df2data, df3data)) - math.sqrt(6*6+6*6))
+    print "DF2,3 Min: {} Max{}".format(min(distanceList(df3data, df4data)) - math.sqrt(6*6+6*6), max(distanceList(df3data, df4data)) - math.sqrt(6*6+6*6))
+    print "DF3,1 Min: {} Max{}".format(min(distanceList(df2data, df4data)) - (6+6), max(distanceList(df2data, df4data)) - (6+6))
+
+    plt.ylim(0, 15)
+    plt.ylabel('Separation (m)')
+    plt.xlabel('Flight time (s)')
+
+    addRuler(plt, ax, 20)
+
+    plt.savefig('Balloon_Fiesta_Flocking_Distance.pdf', dpi=300, bbox_inches='tight')
 
 if __name__ == '__main__':
     main()

@@ -1,0 +1,7 @@
+*.pdf
+*.png
+*.tif
+*.iml
+.idea
+kml
+data

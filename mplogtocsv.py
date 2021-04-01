@@ -33,8 +33,6 @@ def calculateCO2(position):
     H = 2
     u = 1
 
-    print "{}, {}, {}".format(x, y, - (u * ((pow(y, 2) + pow(H, 2))) / (4 * K * -x)))
-
     value = (Q / (2 * math.pi * K * -x)) * math.exp(- (u * ((pow(y, 2) + pow(H, 2))) / (4 * K * -x)))
 
     if value < 0:
