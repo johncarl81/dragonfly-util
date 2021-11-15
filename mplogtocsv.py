@@ -2,6 +2,8 @@
 
 import argparse, datetime, math
 
+from reading import Reading
+
 class dotdict(dict):
     """dot.notation access to dictionary attributes"""
     __getattr__ = dict.get
@@ -40,18 +42,9 @@ def calculateCO2(position):
     else:
         return 420 + value
 
-class Reading:
-    def __init__(self, time, value, lat, lon, alt):
-        self.time = time
-        self.value = float(value)
-        self.lat = float(lat)
-        self.lon = float(lon)
-        self.alt = float(alt)
 
-    def add(self, latadd, lonadd):
-        return Reading(self.time, self.value, self.lat + latadd, self.lon + lonadd, self.alt)
 
-def buildReadings(input, start_time):
+def parse_mplog(input, start_time):
     readings = []
     time_diff = 0
 
@@ -64,7 +57,7 @@ def buildReadings(input, start_time):
 
                 position = dotdict({
                     "latitude": float(lineparts[7]),
-                    "longitude": float(lineparts[8])
+                    "longitude": float(lineparts[8]),
                 })
 
                 readings.append(Reading(start_time + datetime.timedelta(0,time_diff), calculateCO2(position), lineparts[7], lineparts[8], lineparts[9]))
@@ -76,7 +69,7 @@ def buildReadings(input, start_time):
     return readings
 
 def writecsv(input, output, start_time):
-    readings = buildReadings(input, start_time)
+    readings = parse_mplog(input, start_time)
     with open(output, 'w') as outputFile:
         outputFile.write("{},{},{},{},{}\n".format("time", "co2", "lat", "lon", "alt"))
         for reading in readings:
