@@ -50,7 +50,7 @@ def add_ruler(plt, ax, length, height_scale):
 def geo_axis_format(ax):
     ax.set_yticklabels([])
     ax.set_xticklabels([])
-    plt.tick_params(bottom=False, left=False)
+    ax.tick_params(bottom=False, left=False)
 
 def display_path(csv_file, ortho_map):
     fig, ax = plt.subplots(figsize=(10, 5))
@@ -175,7 +175,7 @@ def display_data_altitude(data):
 
 krige_data = {}
 
-def plot_krige(name, fig, ax, lons, lats, data, nlags=6, minco2=None, maxco2=None):
+def plot_krige(name, fig, ax, lons, lats, data, nlags=6, minco2=None, maxco2=None, legend=True):
 
     # get colormap
     ncolors = 256
@@ -232,9 +232,10 @@ def plot_krige(name, fig, ax, lons, lats, data, nlags=6, minco2=None, maxco2=Non
     def fmt(x, pos):
         return r'${:.1f}$'.format((x - minco2) / (maxco2 - minco2))
 
-    cbar = fig.colorbar(cs, format=ticker.FuncFormatter(fmt))
-    cbar.add_lines(cs_lines)
-    cbar.ax.set_ylabel('Normalized $CO_2$ Over Ambient')
+    if legend:
+        cbar = fig.colorbar(cs, format=ticker.FuncFormatter(fmt))
+        cbar.add_lines(cs_lines)
+        cbar.ax.set_ylabel('Normalized $CO_2$ Over Ambient')
 
 def display_krige(name, csv_file, ortho_map, nlags=6):
     fig, ax = plt.subplots(figsize=(16, 6))
