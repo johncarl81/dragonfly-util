@@ -2,7 +2,7 @@
 
 import argparse, datetime
 
-from reading import Reading
+from .reading import Reading
 
 class LogEntry:
 

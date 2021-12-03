@@ -117,7 +117,7 @@ def find_max_distance(reference_point, data):
 
     for d in data:
         distance = d.distance(reference_point)
-        if (distance > max_distance):
+        if distance > max_distance:
             max_distance = distance
             max_point = d
 
@@ -215,7 +215,11 @@ def plot_krige(name, fig, ax, lons, lats, data, nlags=6, minco2=None, maxco2=Non
 
     cs_lines = ax.contour(xintrp, yintrp, z1, np.linspace(minimum, maximum, 15), cmap='Reds', linewidths = 0.8)
 
-    points = np.array(zip(lons, lats))
+    points = []
+    for i in range(len(lons)):
+        points.append([lons[i], lats[i]])
+    #points = np.array(zip(lons, lats))
+    points = np.array(points)
     hull = ConvexHull(points)
 
     hullPoints = [points[v] for v in hull.vertices]
@@ -230,6 +234,8 @@ def plot_krige(name, fig, ax, lons, lats, data, nlags=6, minco2=None, maxco2=Non
         c.set_clip_path(patch)
 
     def fmt(x, pos):
+        if minco2 is None or maxco2 is None:
+            return r'${:.1f}$'.format(x)
         return r'${:.1f}$'.format((x - minco2) / (maxco2 - minco2))
 
     if legend:
@@ -251,7 +257,7 @@ def display_krige(name, csv_file, ortho_map, nlags=6):
 
 
 def display_readings_krige(name, readings, ortho_maps, nlags=6, minco2=None, maxco2=None, addons=None):
-    fig, ax = plt.subplots(figsize=(10,4))
+    fig, ax = plt.subplots(figsize=(16, 6))
 
     plot_maps(fig, ax, ortho_maps)
 
@@ -303,15 +309,11 @@ def save_altitude_readings_krige(name, readings, filename, nlags=6):
 
 
 def filter_zero(data):
-    return filter(lambda d: d.lat != 0 and d.lon != 0, data)
-
-
-def display(d, f, maps):
-    log_file = "utah/{}/{}.log".format(f, d)
-    readings = filter_zero(parse_mplog(log_file, datetime.datetime.strptime(d, '%Y-%m-%d %H-%M-%S')))
-
-    display_data_path(readings, maps)
-
+    filtered = []
+    for d in data:
+        if d.lat != 0 and d.lon != 0:
+            filtered.append(d)
+    return filtered
 
 def display_maps(maps):
     fig, ax = plt.subplots(figsize=(15, 30))
@@ -319,26 +321,6 @@ def display_maps(maps):
 
     geo_axis_format(ax)
     ax.plot()
-
-
-def display_paths(data_array, maps):
-    fig, ax = plt.subplots(figsize=(16, 6))
-
-    plot_maps(fig, ax, maps)
-
-    flattened_list = []
-    for data in data_array:
-        f = "utah/{}/{}.log".format(data[1], data[0])
-        readings = filter_zero(parse_mplog(f, datetime.datetime.strptime(data[0], '%Y-%m-%d %H-%M-%S')))
-
-        plot_data_path(ax, readings)
-        flattened_list.extend(readings)
-
-    zoom_to_data(ax, flattened_list)
-
-    geo_axis_format(ax)
-    ax.plot()
-
 
 def plot_readings(fig, ax, readings):
     ax.plot([r.time for r in readings], [r.value for r in readings])

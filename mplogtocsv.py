@@ -2,7 +2,7 @@
 
 import argparse, datetime, math
 
-from reading import Reading
+from .reading import Reading
 
 class dotdict(dict):
     """dot.notation access to dictionary attributes"""
