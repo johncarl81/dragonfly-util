@@ -100,8 +100,8 @@ def zoom_to_data(ax, data):
 
     dlat = max_lat - min_lat
     dlon = max_lon - min_lon
-    lat_margin_scale = 0.1
-    lon_margin_scale = 0.1
+    lat_margin_scale = 0.15
+    lon_margin_scale = 0.5
     minimum_size = 0.001
 
     dlat = max(max(dlat, dlon), minimum_size)
@@ -175,16 +175,20 @@ def display_data_altitude(data):
 
 krige_data = {}
 
-def plot_krige(name, fig, ax, lons, lats, data, nlags=6, minco2=None, maxco2=None, legend=True):
+def plot_krige(name, fig, ax, lons, lats, data, nlags=6, minco2=None, maxco2=None, legend=True, paths_lons=None, paths_lats=None):
 
+    if paths_lons is None:
+        paths_lons = lons
+    if paths_lats is None:
+        paths_lats = lats
     # get colormap
     ncolors = 256
     reds_color_array = plt.get_cmap('Reds')(range(ncolors))
     blues_color_array = plt.get_cmap('Blues')(range(ncolors))
 
     # change alpha values
-    reds_color_array[:,-1] = np.linspace(0.2, 1, ncolors)
-    blues_color_array[:,-1] = np.linspace(0.3, 1, ncolors)
+    reds_color_array[:,-1] = np.linspace(0, 1, ncolors)
+    blues_color_array[:,-1] = np.linspace(0, 1, ncolors)
 
     # create a colormap object
     reds_map_object = LinearSegmentedColormap.from_list(name='reds_alpha',colors=reds_color_array)
@@ -194,12 +198,12 @@ def plot_krige(name, fig, ax, lons, lats, data, nlags=6, minco2=None, maxco2=Non
 
     grid_margin = 0.00002
 
-    lat_grid_space = (max(lats) - min(lats)) / 100
-    lon_grid_space = (max(lons) - min(lons)) / 100
-    grid_lon = np.arange(np.amin(lons) - grid_margin, np.amax(lons) + grid_margin, lon_grid_space)  # grid_space is the desired delta/step of the output array
-    grid_lat = np.arange(np.amin(lats) - grid_margin, np.amax(lats) + grid_margin, lat_grid_space)
+    lat_grid_space = (max(paths_lats) - min(paths_lats)) / 40
+    lon_grid_space = (max(paths_lons) - min(paths_lons)) / 40
+    grid_lon = np.arange(np.amin(paths_lons) - grid_margin, np.amax(paths_lons) + grid_margin, lon_grid_space)  # grid_space is the desired delta/step of the output array
+    grid_lat = np.arange(np.amin(paths_lats) - grid_margin, np.amax(paths_lats) + grid_margin, lat_grid_space)
 
-    if(name in krige_data.keys()):
+    if name in krige_data.keys():
         z1 = krige_data[name]
     else:
         OK = OrdinaryKriging(lons, lats, data, nlags=nlags)
@@ -215,23 +219,23 @@ def plot_krige(name, fig, ax, lons, lats, data, nlags=6, minco2=None, maxco2=Non
 
     cs_lines = ax.contour(xintrp, yintrp, z1, np.linspace(minimum, maximum, 15), cmap='Reds', linewidths = 0.8)
 
-    points = []
-    for i in range(len(lons)):
-        points.append([lons[i], lats[i]])
-    #points = np.array(zip(lons, lats))
-    points = np.array(points)
-    hull = ConvexHull(points)
-
-    hullPoints = [points[v] for v in hull.vertices]
-
-    clippath = Path(hullPoints)
-    patch = PathPatch(clippath, facecolor='none', ec='none')
-    ax.add_patch(patch)
-    for c in cs.collections:
-        c.set_clip_path(patch)
-
-    for c in cs_lines.collections:
-        c.set_clip_path(patch)
+#     points = []
+#     for i in range(len(lons)):
+#         points.append([lons[i], lats[i]])
+#     #points = np.array(zip(lons, lats))
+#     points = np.array(points)
+#     hull = ConvexHull(points)
+#
+#     hullPoints = [points[v] for v in hull.vertices]
+#
+#     clippath = Path(hullPoints)
+#     patch = PathPatch(clippath, facecolor='none', ec='none')
+#     ax.add_patch(patch)
+#     for c in cs.collections:
+#         c.set_clip_path(patch)
+#
+#     for c in cs_lines.collections:
+#         c.set_clip_path(patch)
 
     def fmt(x, pos):
         if minco2 is None or maxco2 is None:
@@ -241,7 +245,7 @@ def plot_krige(name, fig, ax, lons, lats, data, nlags=6, minco2=None, maxco2=Non
     if legend:
         cbar = fig.colorbar(cs, format=ticker.FuncFormatter(fmt))
         cbar.add_lines(cs_lines)
-        cbar.ax.set_ylabel('Normalized $CO_2$ Over Ambient')
+        cbar.ax.set_ylabel('$CO_2$ concentration (ppm)')
 
 def display_krige(name, csv_file, ortho_map, nlags=6):
     fig, ax = plt.subplots(figsize=(16, 6))
@@ -362,7 +366,7 @@ def plot_scatter(fig, ax, readings, draw_path):
     ax.set_ylabel('Latitude')
     ax.set_ylim(min([r.lat for r in readings]), max([r.lat for r in readings]))
 
-    fig.colorbar(sc)
+    # fig.colorbar(sc)
 
 #    max_size = 5
 #    legendCircles = []
@@ -372,7 +376,7 @@ def plot_scatter(fig, ax, readings, draw_path):
 #        legendNames.append("{}ppm".format(int(min_reading + ((1.0 * i / max_size) * (max_reading - min_reading)))))
 #
 #    fig.legend(legendCircles, legendNames, numpoints=1)
-    fig.legend()
+#     fig.legend()
 
 def plot_altitude_scatter(fig, ax, readings):
     min_reading = min([r.value for r in readings])
