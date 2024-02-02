@@ -191,10 +191,12 @@ def plot_krige(name, fig, ax, lons, lats, data, nlags=6, minco2=None, maxco2=Non
     blues_color_array[:,-1] = np.linspace(0, 1, ncolors)
 
     # create a colormap object
-    reds_map_object = LinearSegmentedColormap.from_list(name='reds_alpha',colors=reds_color_array)
-    plt.register_cmap(cmap=reds_map_object)
-    blues_map_object = LinearSegmentedColormap.from_list(name='blues_alpha',colors=blues_color_array)
-    plt.register_cmap(cmap=blues_map_object)
+    if 'reds_alpha' not in plt.colormaps():
+        reds_map_object = LinearSegmentedColormap.from_list(name='reds_alpha',colors=reds_color_array)
+        plt.register_cmap(cmap=reds_map_object)
+    if 'blues_alpha' not in plt.colormaps():
+        blues_map_object = LinearSegmentedColormap.from_list(name='blues_alpha',colors=blues_color_array)
+        plt.register_cmap(cmap=blues_map_object)
 
     grid_margin = 0.00002
 
